@@ -14,3 +14,12 @@
   font-family: 'Open Sans Semibold';
   color: #ff0d0d;
 }
+
+.address {
+  color: #303030;
+  margin-top: 2%;
+}
+
+.directions {
+  cursor: pointer;
+}

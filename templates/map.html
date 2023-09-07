@@ -26,7 +26,8 @@
 
 <body>
   <div class="map-nav-bar">
-    <h1 class="priority-estimate" style="font-family:'Lucida Sans'">Your estimated priority is 8
+    <h1 class="priority-estimate" style="font-family:'Lucida Sans'">Your estimated priority is <span
+        style="text-decoration: underline;">{{priority}}</span>
     </h1>
   </div>
   <meta id="my-data" data-lat="{{lat}}" data-long="{{long}}">
@@ -96,7 +97,7 @@
 
             for (const hospital of icon_data.icon_hospitals) {
               // Gathering hospital address for google maps directions
-              const hub_link = `<a class="directions" onclick="link_hospital_address(${hospital["address"]});">Directions ></a>`;
+              const direction_link = `<a class="directions" onclick="link_hospital_address(${hospital["address"]});">Directions ></a>`;
 
               // Pushing features for each hospital
               features.push({
@@ -111,7 +112,7 @@
                 'properties': {
                   'title': hospital["name"],
                   'description':
-                    `<strong>${hospital["name"]}</strong><p>${hospital["address"]}</p><p>Busyness level: ${hospital["busyness"]}</p>${hub_link}`,
+                    `<strong>${hospital["name"]}</strong><p class="address">${hospital["address"]}</p><p>Busyness level: ${hospital["busyness"]}</p>${direction_link}`,
                 }
               })
             }

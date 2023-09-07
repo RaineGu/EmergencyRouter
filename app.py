@@ -45,7 +45,10 @@ def map():
     location = app.geocode("The University of New South Wales")
     lat = float(location.latitude)
     long = float(location.longitude)
-    return render_template("map.html", hospitals=hospitals, lat=lat, long=long)
+    priority = 8
+    return render_template(
+        "map.html", hospitals=hospitals, lat=lat, long=long, priority=priority
+    )
 
 
 @app.get("/register_hospital")
