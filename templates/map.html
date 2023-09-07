@@ -44,10 +44,10 @@
     map.on('load', () => {
       // Image to use as a custom marker
       map.loadImage(
-        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+        'static/green_marker.png',
         (error, image) => {
           if (error) throw error;
-          map.addImage('custom-marker', image);
+          map.addImage('static/green_marker.png', image);
 
           // Looping to add every hospital as a feature
           const features = [];
@@ -56,6 +56,14 @@
           console.log(newhospitals);
           for (const hospital of newhospitals) {
             console.log(hospital);
+            // Using busyness to determine icon
+            let icon_src = '';
+            if (hospital['busyness'] === 10 || hospital['busyness'] === 9) {
+              icon_src = 'static/red_marker.png';
+            } else {
+              icon_src = 'static/green_marker.png';
+            }
+            console.log(icon_src);
             // Gathering next events
             const hub_link = `<a class="directions" onclick="link_hospital_address(${hospital["address"]});">Directions ></a>`;
 
@@ -73,6 +81,7 @@
                 'title': hospital["name"],
                 'description':
                   `<strong>${hospital["name"]}</strong><p>${hospital["address"]}</p><p>Busyness level: ${hospital["busyness"]}</p>${hub_link}`,
+                'icon': icon_src
               }
             })
           }
@@ -92,7 +101,7 @@
             'type': 'symbol',
             'source': 'points',
             'layout': {
-              'icon-image': 'custom-marker',
+              'icon-image': ['get', 'icon'],
               // get the title name from the source's "title" property
               'text-field': ['get', 'title'],
               'text-font': [
