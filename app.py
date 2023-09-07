@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 #from geopy.geocoders import Nominatim
 from datetime import datetime
 from pprint import pprint
-from questionaire import CourseForms
+#from questionaire import CourseForms
 
 app = Flask(__name__)
 
