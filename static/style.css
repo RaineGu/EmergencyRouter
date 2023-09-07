@@ -1,6 +1,6 @@
 /* Style Guide */
 
-/* Colour Pallette */
+/* Colour Pallette  */
 
 /* Black 
 #f44336 Red 
@@ -15,21 +15,22 @@ header {
     background-color: #f44336;
     font-size: 60px;
     color: black;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Open Sans Semibold';
     text-align: center;
     padding:10px;
 }
 
 body {
     color: black;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Open Sans Semibold';
     margin:0;
 }
 
 p {
-    padding: 10px;
-    font-size: 20px;
-    background-color: gray;
+    background-color: #f44336;
+    font-family:'Open Sans Semibold';
+    margin:0;
+    color: black;
 }
 
 footer {
@@ -45,4 +46,22 @@ button {
 }
 button:hover {
     background-color: #385399; 
+}
+.fieldlabel {
+    
+    
+} 
+.field {
+}
+input[type = submit] {
+    background-color: #23408e;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right:20px;
+    color: white;
+    border:#385399;
+}
+input[type = submit]:hover {
+    background-color: #2e427a;
+    cursor: pointer;
 }
