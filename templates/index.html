@@ -8,8 +8,12 @@
 
         {%for field in form %}
             <p>
+                <div class="fieldlabel">
                 {{ field.label }}
+                </div> 
+                <div class="fields>
                 {{ field() }}
+                </div>
             </p>
 
             
