@@ -3,13 +3,21 @@ import json
 from geopy.geocoders import Nominatim
 from datetime import datetime
 from pprint import pprint
+from questionaire import CourseForm
 
 app = Flask(__name__)
 
 
-@app.route("/")
+app = Flask(__name__)
+app.config["SECRET_KEY"] = "shhhhh"
+
+
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    questionaire = CourseForm()
+    if request.method == "POST":
+        print(questionaire.data)
+    return render_template("index.html", form=questionaire)
 
 
 @app.post("/quiz")
