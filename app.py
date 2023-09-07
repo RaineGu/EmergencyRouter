@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    array = [1, 2, 3, 4]
     return render_template("index.html")
 
 @app.post("/")
