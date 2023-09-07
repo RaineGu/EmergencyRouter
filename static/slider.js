@@ -48,6 +48,19 @@ slider.oninput = function() {
     busyColour.style.setProperty('--busy-colour', '#69B34C');
   }
 
+  var data = this.value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/staff_home', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("sucess")
+          alert('Data sent successfully');
+      } else {
+        console.log("FAIL")
+      }
+  };
+  xhr.send(data);
 }
 
 
