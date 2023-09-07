@@ -27,16 +27,21 @@ def index():
             render_template("index.html", form=questionaire)
         else:
             # Calculate estimated priority list and show ER map
-            priority = 1
-            priority += len(questionaire.data["blood_circulation"])  # Max 2
-            priority += len(questionaire.data["dehydration"])  # Max 4
+            priority = 5  # Lowest ER priority
+            symptoms = 1  # Max 10 symptoms to exhibit
+            symptoms += len(questionaire.data["blood_circulation"])  # Max 2
+            symptoms += len(questionaire.data["dehydration"])  # Max 4
 
             if questionaire.data["disabilities"] == "Yes":
-                priority += 1
+                symptoms += 1
             if questionaire.data["breathing_distress"] == "Mild":
-                priority += 1
+                symptoms += 1
             if questionaire.data["visibly_pale"] == "Yes":
-                priority += 1
+                symptoms += 1
+            if symptoms > 7:
+                priority = 3
+            elif symptoms > 4:
+                priority = 4
             return redirect(f"/map?priority={priority}")
     return render_template("index.html", form=questionaire)
 
@@ -70,7 +75,7 @@ def map():
 
     # Getting base device postcode to center map
     # Instantiate a new Nominatim client
-    app = Nominatim(user_agent="EmergencyRouter", timeout=4)
+    app = Nominatim(user_agent="EmergencyRouter", timeout=20)
     # Get location raw data
     location = app.geocode("The University of New South Wales")
     lat = float(location.latitude)

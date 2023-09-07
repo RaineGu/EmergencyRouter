@@ -28,7 +28,7 @@ class CourseForm(FlaskForm):
 
     # Setting up blood circulation checkboxes
     string_of_bc_symptoms = [
-        "Abnormal heart beat\r\nChest pain\r\nCold limbs\r\nBluish discolouration of limbs\r\nConfusion\r\nUnconsciousness\n"
+        "Abnormal heart beat\r\nChest pain\r\nCold or bluish limbs\r\nConfusion\r\nUnconsciousness\n"
     ]
     list_of_bc_symptoms = string_of_bc_symptoms[0].split("\r")
     # Create a list of value/description tuples
