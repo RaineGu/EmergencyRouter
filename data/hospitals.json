@@ -5,7 +5,7 @@
     "busyness": 1,
     "latitude": -33.7628349968106,
     "longitude": 151.28128425397367,
-    "name": "Manly Selective 'Hospital'"
+    "name": "Manly Selective Hospital"
   },
   {
     "address": "105 Frenchs Forest Rd W, Frenchs Forest NSW 2086",
@@ -37,7 +37,7 @@
     "busyness": 9,
     "latitude": -33.91730419629362,
     "longitude": 151.23855717032063,
-    "name": "Sydney Children's Hospital, Randwick"
+    "name": "Sydney Childrens Hospital, Randwick"
   },
   {
     "address": "INFINITY by Crown, Shop 108/305 Botany Rd, Zetland NSW 2017",
@@ -53,6 +53,6 @@
     "busyness": 9,
     "latitude": -33.88048537283803,
     "longitude": 151.21964619345286,
-    "name": "St Vincent's Private Hospital Sydney"
+    "name": "St Vincents Private Hospital Sydney"
   }
 ]
