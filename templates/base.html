@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %} - FlaskApp</title>
@@ -11,7 +12,9 @@
             text-decoration: none;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="static\style.css">
 </head>
+
 <body>
     <nav>
         <a href="{{ url_for('index') }}">FlaskApp</a>
@@ -22,4 +25,6 @@
         {% block content %} {% endblock %}
     </div>
 </body>
+<script src="../static/site.js"></script>
+
 </html>
