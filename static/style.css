@@ -1,3 +1,16 @@
 .directions {
   font-weight: bold;
 }
+
+.map-nav-bar {
+  position: relative;
+  z-index: 10;
+  background-color: rgb(255, 253, 250);
+  padding: 0.1%;
+  text-align: center;
+}
+
+.priority-estimate {
+  font-family: 'Open Sans Semibold';
+  color: #ff0d0d;
+}
