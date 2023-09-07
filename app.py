@@ -62,6 +62,7 @@ def map():
     # Creating array of food hospitals
     hospitals = []
     for hospital in data:
+        wait = 10 + int(hospital["busyness"]) * int(priority)
         # Adding hospitals to pass into website
         hospitals.append(
             {
@@ -70,6 +71,7 @@ def map():
                 "latitude": hospital["latitude"],
                 "busyness": hospital["busyness"],
                 "address": hospital["address"],
+                "wait": wait,
             }
         )
 

@@ -110,7 +110,7 @@
                   ]
                 },
                 'properties': {
-                  'title': hospital["name"],
+                  'title': `${hospital["name"]} \n(~${hospital["wait"]} min wait)`,
                   'description':
                     `<strong>${hospital["name"]}</strong><p class="address">${hospital["address"]}</p><p>Busyness level: ${hospital["busyness"]}</p>${direction_link}`,
                 }
