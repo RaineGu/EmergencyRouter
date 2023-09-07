@@ -1,0 +1,48 @@
+/* Style Guide */
+
+/* Colour Pallette */
+
+/* Black 
+#f44336 Red 
+#23408e Dark blue
+#385399 Blue
+#cccccc Gray
+#ffffff White
+*/
+
+
+header {
+    background-color: #f44336;
+    font-size: 60px;
+    color: black;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding:10px;
+}
+
+body {
+    color: black;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:0;
+}
+
+p {
+    padding: 10px;
+    font-size: 20px;
+    background-color: gray;
+}
+
+footer {
+    font-size: 10px;
+    background-color: #f44336;
+}
+
+button {
+    background-color: #23408e;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+}
+button:hover {
+    background-color: #385399; 
+}
