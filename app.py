@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect
 import json
 from geopy.geocoders import Nominatim
 from datetime import datetime
@@ -16,7 +16,28 @@ app.config["SECRET_KEY"] = "shhhhh"
 def index():
     questionaire = CourseForm()
     if request.method == "POST":
-        print(questionaire.data)
+        # Serious cases in which to call an ambulance
+        if (
+            questionaire.data["airways_compromised"] == "Yes"
+            or questionaire.data["breathing_distress"] == "Severe"
+            or questionaire.data["breathing_distress"] == "Moderate"
+            or len(questionaire.data["blood_circulation"]) > 2
+        ):
+            flash("This is a medical emergency - Call an ambulance!", "emergency")
+            render_template("index.html", form=questionaire)
+        else:
+            # Calculate estimated priority list and show ER map
+            priority = 1
+            priority += len(questionaire.data["blood_circulation"])  # Max 2
+            priority += len(questionaire.data["dehydration"])  # Max 4
+
+            if questionaire.data["disabilities"] == "Yes":
+                priority += 1
+            if questionaire.data["breathing_distress"] == "Mild":
+                priority += 1
+            if questionaire.data["visibly_pale"] == "Yes":
+                priority += 1
+            return redirect(f"/map?priority={priority}")
     return render_template("index.html", form=questionaire)
 
 
@@ -29,6 +50,7 @@ def quiz_posted():
 @app.get("/map")
 def map():
     # Retrieving data
+    priority = request.args.get("priority")
     json_file = open("data\hospitals.json")
     data = json.load(json_file)
 
@@ -53,7 +75,6 @@ def map():
     location = app.geocode("The University of New South Wales")
     lat = float(location.latitude)
     long = float(location.longitude)
-    priority = 8
     return render_template(
         "map.html", hospitals=hospitals, lat=lat, long=long, priority=priority
     )
