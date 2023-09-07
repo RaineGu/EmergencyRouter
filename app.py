@@ -35,11 +35,11 @@ def get_staff_login():
 def post_staff_login():
     return render_template("staff_home.html")
 
-@app.get("/staff_register")
-def get_staff_registration():
-    return render_template("staff_register.html")
+#@app.get("/staff_register")
+#def get_staff_registration():
+#    return render_template("staff_register.html")
 
-@app.post("/staff_register")
+@app.get("/staff_register")
 def post_staff_registration():
     return render_template("staff_home.html")
 
