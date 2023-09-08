@@ -12,12 +12,14 @@
             text-decoration: none;
         }
     </style>
+    <link rel="stylesheet" href="../static/slider.css">
     <link rel="stylesheet" type="text/css" href="static\style.css">
 </head>
 
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
+        <a href="{{ url_for('index') }}">EmergencyRouter</a>
+        <a href="{{ url_for('post_staff_registration') }}">ReportBusyness</a>
         <a href="#">About</a>
     </nav>
     <hr>
@@ -25,6 +27,5 @@
         {% block content %} {% endblock %}
     </div>
 </body>
-<script src="../static/site.js"></script>
 
 </html>
