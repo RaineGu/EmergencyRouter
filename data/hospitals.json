@@ -5,7 +5,7 @@
     "busyness": 1,
     "latitude": -33.7628349968106,
     "longitude": 151.28128425397367,
-    "name": "Manly Selective 'Hospital'"
+    "name": "Manly Selective Sick Bay"
   },
   {
     "address": "105 Frenchs Forest Rd W, Frenchs Forest NSW 2086",
@@ -18,7 +18,7 @@
   {
     "address": "320-346 Barker St, Randwick NSW 2031",
     "approved": true,
-    "busyness": 9,
+    "busyness": 6,
     "latitude": -33.91891092007177,
     "longitude": 151.2385557531524,
     "name": "Prince of Wales Hospital"
@@ -32,17 +32,9 @@
     "name": "Royal Prince Alfred Hospital"
   },
   {
-    "address": "High St, Randwick NSW 2031",
-    "approved": true,
-    "busyness": 9,
-    "latitude": -33.91730419629362,
-    "longitude": 151.23855717032063,
-    "name": "Sydney Children's Hospital, Randwick"
-  },
-  {
     "address": "INFINITY by Crown, Shop 108/305 Botany Rd, Zetland NSW 2017",
     "approved": true,
-    "busyness": 9,
+    "busyness": 7,
     "latitude": -33.9054613897118,
     "longitude": 151.2035456556594,
     "name": "Infinity Health Medical Centre Green Square"
@@ -50,9 +42,9 @@
   {
     "address": "406 Victoria St, Darlinghurst NSW 2010",
     "approved": true,
-    "busyness": 9,
+    "busyness": 1,
     "latitude": -33.88048537283803,
     "longitude": 151.21964619345286,
-    "name": "St Vincent's Private Hospital Sydney"
+    "name": "St Vincents Private Hospital Sydney"
   }
 ]

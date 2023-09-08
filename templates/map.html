@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Map styling -->
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+  <script type="text/javascript" src="../static/site.js"></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="static\style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <title>Emergency Router Map</title>
+</head>
+
+<body>
+  <div class="map-nav-bar">
+    <h1 class="priority-estimate" style="font-family:'Lucida Sans'">Your estimated priority is <span
+        style="text-decoration: underline;">{{priority}}</span>
+    </h1>
+  </div>
+  <meta id="my-data" data-lat="{{lat}}" data-long="{{long}}">
+  <!-- Map -->
+  <!-- NOTE: MAP MARKERS USE LONG/LAT COORDS INSTEAD OF LAT/LONG -->
+  <div id='map'></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicmFpbnktYmFnZWwiLCJhIjoiY2xtOGg2dzFjMDkweTNjb3MybzRwdHU4diJ9.4LVFwu9u8wf6RJnRVALCGQ';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [parseFloat("{{long}}"), parseFloat("{{lat}}")],
+      zoom: 13
+    });
+
+    const busy_1_2_url = 'static/1_2_marker.png';
+    const busy_3_4_url = 'static/3_4_marker.png';
+    const busy_5_url = 'static/5_marker.png';
+    const busy_6_url = 'static/6_marker.png';
+    const busy_7_8_url = 'static/7_8_marker.png';
+    const busy_9_10_url = 'static/9_10_marker.png';
+
+    map.on('load', () => {
+      // Looping to add every hospital as a feature
+      const hospitals = "{{hospitals}}";
+      const newhospitals = eval(hospitals.replaceAll("&#39;", "'"));
+
+      // Creating a list of structs to map different hospitals to icons depending on busyness:
+      // [{icon: icon_url, hospitals: hospital[]}]
+      const hospital_icon_data = [];
+      const marker_urls = [busy_1_2_url, busy_3_4_url, busy_5_url, busy_6_url, busy_7_8_url, busy_9_10_url]
+      for (const marker of marker_urls) {
+        let target_hospitals = [];
+        if (marker === busy_1_2_url) {
+          // Filter to get all hospitals with 1-2 busyness
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 1 || hospital.busyness == 2);
+        } else if (marker === busy_3_4_url) {
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 3 || hospital.busyness == 4);
+        } else if (marker === busy_5_url) {
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 5);
+        } else if (marker === busy_6_url) {
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 6);
+        } else if (marker === busy_7_8_url) {
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 7 || hospital.busyness == 8);
+        } else if (marker === busy_9_10_url) {
+          target_hospitals = newhospitals.filter(hospital => hospital.busyness == 9 || hospital.busyness == 10);
+        }
+
+        hospital_icon_data.push({
+          icon_url: marker,
+          icon_hospitals: target_hospitals
+        })
+      }
+
+      // Using list of different icons to add them to map
+      for (const icon_data of hospital_icon_data) {
+        // Image to use as a custom marker
+        map.loadImage(
+          icon_data.icon_url,
+          (error, image) => {
+            if (error) throw error;
+            map.addImage(icon_data.icon_url, image);
+
+            // Features populated with the hospitals of that specific icon
+            const features = [];
+
+            for (const hospital of icon_data.icon_hospitals) {
+              // Gathering hospital address for google maps directions
+              const direction_link = `<a class="directions" onclick="link_hospital_address(${hospital["address"]});">Directions ></a>`;
+
+              // Pushing features for each hospital
+              features.push({
+                'type': 'Feature',
+                'geometry': {
+                  'type': 'Point',
+                  'coordinates': [
+                    hospital["longitude"],
+                    hospital["latitude"],
+                  ]
+                },
+                'properties': {
+                  'title': `${hospital["name"]} \n(~${hospital["wait"]} min wait)`,
+                  'description':
+                    `<strong>${hospital["name"]}</strong><p class="address">${hospital["address"]}</p><p>Busyness level: ${hospital["busyness"]}</p>${direction_link}`,
+                }
+              })
+            }
+
+
+            // Add a GeoJSON source with all required points
+            map.addSource(`${icon_data.icon_url}_points`, {
+              'type': 'geojson',
+              'data': {
+                'type': 'FeatureCollection',
+                'features': features
+              }
+            });
+
+            // Add a symbol layer
+            map.addLayer({
+              'id': `${icon_data.icon_url}_points`,
+              'type': 'symbol',
+              'source': `${icon_data.icon_url}_points`,
+              'layout': {
+                'icon-image': icon_data.icon_url,
+                // get the title name from the source's "title" property
+                'text-field': ['get', 'title'],
+                'text-font': [
+                  'Open Sans Semibold',
+                  'Arial Unicode MS Bold'
+                ],
+                'text-offset': [0, 1.25],
+                'text-anchor': 'top'
+              },
+              'className': 'marker'
+            });
+
+            // When a click event occurs on a feature in the places layer, open a popup at the
+            // location of the feature, with description HTML from its properties.
+            map.on('click', `${icon_data.icon_url}_points`, (e) => {
+              // Copy coordinates array.
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const description = e.features[0].properties.description;
+
+              // Ensure that if the map is zoomed out such that multiple
+              // copies of the feature are visible, the popup appears
+              // over the copy being pointed to.
+              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+              }
+
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+            });
+          }
+        );
+      }
+    });
+
+  </script>
+</body>
+<!--</div>-->
+
+</html>

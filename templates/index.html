@@ -1,35 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Triage Survey {% endblock %}</h1>
+<h1>{% block title %} Triage Survey {% endblock %}</h1>
 
-    <form method="POST" action="/">
-        {{ form.csrf_token }}
+<form method="POST" action="/">
+  {{ form.csrf_token }}
 
-        {%for field in form %}
-            <p>
-                <div class="fieldlabel">
-                {{ field.label }}
-                </div> 
-                <div class="field">
-                {{ field() }}
-                </div>
-            </p>
+  {%for field in form %}
+  <p>
+    {{ field.label }}
+    {{ field() }}
+  </p>
 
-            
 
-            {% if field.errors %}
-                <ul class="errors">
-                    {% for error in field %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {%endfor%}
 
-        <p>
-            <input type="submit" value="Finish">
-        </p>
-    </form>
+  {% if field.errors %}
+  <ul class="errors">
+    {% for error in field %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {%endfor%}
 
+  <p>
+    <input type="submit" value="Finish">
+  </p>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 class="{{ messages[0][0] }} modal-content">{{ messages[0][1] }}</h2>
+  </div>
+</div>
+{% endif %}
+{% endwith %}
 {% endblock %}
