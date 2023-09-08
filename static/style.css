@@ -48,20 +48,37 @@ button:hover {
     background-color: #385399; 
 }
 .fieldlabel {
-    
-    
+    font-size: 3em;
+    background-color: #f44336;
+    font-family:'Open Sans Semibold';
+    margin:0;
+    color: black;
 } 
 .field {
+    font-size: 1em;
+    background-color: #f44336;
+    font-family:'Open Sans Semibold';
+    margin:0;
+    color: black;
+    text-align: center;
 }
 input[type = submit] {
     background-color: #23408e;
     border-radius: 20px;
     padding-left: 20px;
     padding-right:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: white;
     border:#385399;
 }
 input[type = submit]:hover {
     background-color: #2e427a;
     cursor: pointer;
+}
+nav a {
+    color: #d64161;
+    font-size: 3em;
+    margin-left: 50px;
+    text-decoration: none;
 }
