@@ -89,6 +89,40 @@ nav a {
   text-decoration: none;
 }
 
+input[type=radio],
+input [type=checkbox] {
+  border-radius: 20px;
+  cursor: pointer;
+  display: none;
+  outline: none;
+
+  &:before {
+    background-color: white;
+  }
+
+  &:after {
+    background-color: #2e427a;
+    color: white;
+  }
+}
+
+input[type=radio],
+input [type=checkbox] {
+  border-radius: 20px;
+  cursor: pointer;
+  display: none;
+  outline: none;
+
+  &:before {
+    background-color: white;
+  }
+
+  &:after {
+    background-color: #2e427a;
+    color: white;
+  }
+}
+
 .directions {
   font-weight: bold;
 }
