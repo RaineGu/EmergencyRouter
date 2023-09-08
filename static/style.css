@@ -149,7 +149,6 @@ input [type=checkbox] {
 .priority-estimate {
   font-family: 'Lucida Sans';
   margin-top: 0;
-  width: 100%;
   padding-top: 11px;
   padding-bottom: 11px;
 }
