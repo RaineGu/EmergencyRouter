@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %} - FlaskApp</title>
@@ -12,17 +13,18 @@
         }
     </style>
     <link rel="stylesheet" href="../static/slider.css">
+    <link rel="stylesheet" type="text/css" href="static\style.css">
 </head>
+
 <body>
     <nav>
-</head>
-<body>
-    <nav>
-        <a href="{{ url_for('index') }}">Healthfast</a>
+        <a href="{{ url_for('index') }}">EmergencyRouter</a>
+        <a href="#">About</a>
     </nav>
     <hr>
     <div class="content">
         {% block content %} {% endblock %}
     </div>
 </body>
+
 </html>
