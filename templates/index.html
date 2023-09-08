@@ -4,10 +4,9 @@
 <h1>{% block title %} Triage Survey {% endblock %}</h1>
 
 <form method="POST" action="/">
-  {{ form.csrf_token }}
 
-  {%for field in form %}
-  <p>
+  {%for field in form if field.widget.input_type != 'hidden' %}
+  <p class="field">
     {{ field.label }}
     {{ field() }}
   </p>
@@ -24,7 +23,7 @@
   {%endfor%}
 
   <p>
-    <input type="submit" value="Add">
+    <input class="submit-button" type="submit" value="Finish">
   </p>
 </form>
 

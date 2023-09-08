@@ -3,24 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} {% endblock %} - FlaskApp</title>
-    <style>
-        nav a {
-            color: #d64161;
-            font-size: 3em;
-            margin-left: 50px;
-            text-decoration: none;
-        }
-    </style>
+    <title>{% block title %} {% endblock %} Emergency Router</title>
     <link rel="stylesheet" href="../static/slider.css">
     <link rel="stylesheet" type="text/css" href="static\style.css">
 </head>
 
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">EmergencyRouter</a>
-        <a href="{{ url_for('post_staff_registration') }}">ReportBusyness</a>
-        <a href="#">About</a>
+        <img src="..\static\9_10_marker.png">
+        <a href="{{ url_for('index') }}">Emergency Router</a>
+        <a class="nav-text" href="{{ url_for('post_staff_registration') }}">Report Busyness</a>
     </nav>
     <hr>
     <div class="content">
