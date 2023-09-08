@@ -207,3 +207,5 @@ img {
   margin-top: 0.5rem;
   height: 3.2rem;
 }
+
+@import "slider.css"
