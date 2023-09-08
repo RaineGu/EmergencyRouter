@@ -9,7 +9,7 @@ var busyColour = document.querySelector(':root');
 
 output.innerHTML = slider.value; // Display the default slider value
 
-
+document.getElementById("button").value = "Northern Beaches Hospital";
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
   output.innerHTML = this.value;
