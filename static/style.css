@@ -27,6 +27,7 @@ h1 {
   font-family: 'Lucida Sans';
   text-align: center;
   padding: 10px;
+  margin-top: 0;
 }
 
 body {
@@ -75,19 +76,22 @@ button:hover {
 }
 
 input[type=submit] {
-  background-color: #23408e;
+  font-size: 1.5rem;
+  background-color: #f44336;
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   color: white;
-  border: #385399;
-  margin-left: 47%;
+  border: #f44336;
+  margin-left: 46%;
+  margin-top: 1%;
+  margin-bottom: 2%;
 }
 
 input[type=submit]:hover {
-  background-color: #2e427a;
+  background-color: #bc271d;
   cursor: pointer;
 }
 
@@ -100,6 +104,8 @@ nav a {
 
 .nav-text {
   margin-left: 50px;
+  margin-right: 1rem;
+  float: right;
 }
 
 nav {
@@ -124,24 +130,34 @@ input [type=checkbox] {
 
 .directions {
   font-weight: bold;
+  margin-top: 2%;
 }
 
 .map-nav-bar {
   position: relative;
   z-index: 10;
-  background-color: rgb(255, 253, 250);
   padding: 0.1%;
   text-align: center;
 }
 
+.map-home-nav-bar {
+  position: relative;
+  z-index: 10;
+  background-color: rgb(255, 253, 250);
+}
+
 .priority-estimate {
   font-family: 'Lucida Sans';
-  color: #ff0d0d;
+  margin-top: 0;
+  width: 100%;
+  padding-top: 11px;
+  padding-bottom: 11px;
 }
 
 .address {
   color: #303030;
   margin-top: 2%;
+  font-size: 1rem;
 }
 
 .directions {
@@ -199,13 +215,17 @@ li {
   margin-left: 42%;
 }
 
-label {}
-
 img {
   float: left;
   margin-left: 1.5rem;
   margin-top: 0.5rem;
   height: 3.2rem;
+}
+
+.popup-text {
+  font-size: 1.1rem;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 @import "slider.css"

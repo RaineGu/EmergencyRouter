@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect
 import json
 from datetime import datetime
+from geopy.geocoders import Nominatim
 from pprint import pprint
 import json
 from questionaire import CourseForm
@@ -43,7 +44,7 @@ def index():
     return render_template("index.html", form=questionaire)
 
 
-@app.route("/map", methods=['GET'])
+@app.route("/map", methods=["GET"])
 def map():
     # Retrieving data
     priority = request.args.get("priority")
@@ -95,4 +96,3 @@ def post_staff_registration():
             hospitals.truncate()
 
     return render_template("staff_home.html")
-
